@@ -2,7 +2,6 @@
 /* For some reason wofi refuses to use import colors, so this is minimal */
 
 *{
-    border-radius: 20px;
     border: none !important;
 }
 

@@ -1,6 +1,8 @@
 # dotfiles
 > [!NOTE]
 > Backup your dotfiles.
+## New Look
+![Preview Image](https://raw.githubusercontent.com/sharkota/dotfiles/refs/heads/main/preview/5.png)
 ## Preview
 ![Preview Image](https://raw.githubusercontent.com/sharkota/dotfiles/refs/heads/main/preview/1.png)
 ![Preview Image](https://raw.githubusercontent.com/sharkota/dotfiles/refs/heads/main/preview/2.png)
