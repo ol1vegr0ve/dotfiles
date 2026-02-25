@@ -1,31 +1,39 @@
 #!/bin/bash
-echo "───────────────────────────────────────────────────────"
-echo "Choose setup, README.md for more info"
-echo "───────────────────────────────────────────────────────"
-echo "Please make backups of your .config, mainly hyprland"
-echo "───────────────────────────────────────────────────────"
+set -e
+line1="───────────────────────────────────────────────────────"
+echo "$line1"
+echo "Installing notify to watch wallpaper..."
+echo "$line1"
+sudo pacman -S --noconfirm inotify-tools
+echo "$line1"
+echo "Copying config files..."
+echo "$line1"
+mkdir -p "$HOME/.config"
+cp -a .config/* "$HOME/.config/"
+echo "$line1"
+echo "Creating krice service..."
+echo "$line1"
+mkdir -p "$HOME/.config/systemd/user"
+cat > "$HOME/.config/systemd/user/krice.service" <<EOF
+[Unit]
+Description=Krice Plasma Auto Wal
 
-options=("minimal" "desktop" "addons" "apply config only" "quit")
-select opt in "${options[@]}"; do
-  case $REPLY in
-    1) echo "starting...";
-    sh base/run.sh
-    break ;;
-    2) echo "starting...";
-    sh base/run.sh
-    sh desktop/run.sh
-    break ;;
-    3) echo "starting...";
-    sh addons/run.sh
-    break ;;
-    4) echo "starting...";
-    rsync -avh base/.config/ ~/.config/
-    rsync -avh desktop/.config/ ~/.config/
-    echo "Config applied! Source your .bashrc or restart the terminal."
-    break ;;
-    5) echo "quitting...";
-    
-    break ;;
-    *) echo "invalid option!";;
-  esac
-done
+[Service]
+ExecStart=%h/.config/krice/krice.sh
+Restart=always
+
+[Install]
+WantedBy=default.target
+EOF
+systemctl --user daemon-reload
+systemctl --user enable krice --now
+if ! grep -q "KRICE START" "$HOME/.bashrc"; then
+cat <<EOF >> "$HOME/.bashrc"
+# KRICE START
+cat ~/.cache/wal/sequences
+# KRICE END
+EOF
+fi
+echo "$line1"
+echo "Done! Change your wallpaper in KDE!"
+echo "$line1"

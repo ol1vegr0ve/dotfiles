@@ -1,0 +1,12 @@
+[Unit]
+Description=Krice Plasma Auto Wal
+After=graphical.target
+
+[Service]
+Type=simple
+ExecStart=/home/user/.config/krice/krice.sh
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=default.target
