@@ -16,14 +16,12 @@ while true; do
 
   if [[ -n "$wallpaper" && "$wallpaper" != "$last_wallpaper" ]]; then
     last_wallpaper="$wallpaper"
-
+    plasma-apply-colorscheme BreezeDark
     rm -rf ~/.cache/wal
     wal -q -i "$wallpaper"
-
+    python ~/.config/krice/extra.py
     cp ~/.cache/wal/plasma.colors ~/.local/share/color-schemes/Pywal.colors
     cp ~/.cache/wal/discord.css ~/.config/Vencord/themes/pywal.css
-
-    plasma-apply-colorscheme BreezeDark
     plasma-apply-colorscheme Pywal
   fi
 done

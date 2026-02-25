@@ -14,17 +14,6 @@ echo "$line1"
 echo "Creating krice service..."
 echo "$line1"
 mkdir -p "$HOME/.config/systemd/user"
-cat > "$HOME/.config/systemd/user/krice.service" <<EOF
-[Unit]
-Description=Krice Plasma Auto Wal
-
-[Service]
-ExecStart=%h/.config/krice/krice.sh
-Restart=always
-
-[Install]
-WantedBy=default.target
-EOF
 systemctl --user daemon-reload
 systemctl --user enable krice --now
 if ! grep -q "KRICE START" "$HOME/.bashrc"; then
