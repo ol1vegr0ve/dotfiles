@@ -22,6 +22,6 @@ while true; do
     python ~/.config/krice/extra.py
     cp ~/.cache/wal/plasma.colors ~/.local/share/color-schemes/Pywal.colors
     cp ~/.cache/wal/discord.css ~/.config/Vencord/themes/pywal.css
-    plasma-apply-colorscheme Pywal
+    sleep .5 && plasma-apply-colorscheme Pywal
   fi
 done
