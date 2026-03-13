@@ -1,9 +1,12 @@
 [Unit]
 Description=Krice Plasma Auto Wal
+After=plasma-workspace.target
+Wants=plasma-workspace.target
 
 [Service]
 ExecStart=%h/.config/krice/krice.sh
 Restart=always
+RestartSec=2
 
 [Install]
 WantedBy=default.target
